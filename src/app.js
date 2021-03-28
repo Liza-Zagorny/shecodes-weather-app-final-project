@@ -1,5 +1,21 @@
 //Basic search engine with API-call: after entering city name and submitting (pressing enter after writing city name) 
 //".current-weather-row" data will display relevant info in metric unit only.
+
+function formatDate (timestamp) {
+  let date = new Date(timestamp);
+  let days = ["Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  let day = days[date.getDay()];
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  if (hours < 10) {
+    minutes = `0${hours}`;
+  }
+  return `${day} ${hours}:${minutes}`;
+}
+
 function displayCityNameAndTemp(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input").value;
@@ -8,6 +24,7 @@ function displayCityNameAndTemp(event) {
    function showTemp(response) {
     let displayedCity = document.querySelector("#current-city");
     let displayedTemp = document.querySelector("#temp-value");
+    let dispayedDateAndTime = document.querySelector("#current-time");
     let dispayedDescription = document.querySelector("#weather-main");
     let dispayedHumidity = document.querySelector("#main-humidity");
     let dispayedWindSpeed = document.querySelector("#wind-speed");
@@ -15,12 +32,14 @@ function displayCityNameAndTemp(event) {
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
     let outputTemp = Math.round(response.data.main.temp);
+    let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedTemp.innerHTML = outputTemp;
+    dispayedDateAndTime.innerHTML = outputDateAndTime;
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
@@ -50,6 +69,7 @@ function showPosition(position) {
   function showGeolocationTemp(response) {
     let displayedCity = document.querySelector("#current-city");
     let displayedTemp = document.querySelector("#temp-value");
+    let dispayedDateAndTime = document.querySelector("#current-time");
     let dispayedDescription = document.querySelector("#weather-main");
     let dispayedHumidity = document.querySelector("#main-humidity");
     let dispayedWindSpeed = document.querySelector("#wind-speed");
@@ -57,12 +77,14 @@ function showPosition(position) {
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
     let outputTemp = Math.round(response.data.main.temp);
+    let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedTemp.innerHTML = outputTemp;
+    dispayedDateAndTime.innerHTML = outputDateAndTime;
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
