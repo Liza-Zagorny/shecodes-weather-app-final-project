@@ -24,3 +24,14 @@ footer {
 .current-weather-row {
   padding-top: 25px;
 }
+
+.search-row {
+  padding-right: 0;
+}
+
+.forcast-emoji {
+  font-size: 50px;
+}
+.forecast-temp {
+  font-size: 14px;
+}
