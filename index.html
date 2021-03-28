@@ -26,7 +26,7 @@
                         </form>
                     </div>
                     <div class="col-2 d-grid gap-2 d-flex justify-content-evenly">
-                        <button type="button" class="btn btn-outline-dark">
+                        <button type="button" class="btn btn-outline-dark" id="search-button">
                             <i class="fas fa-search search"></i>
                         </button>
                         <button id="current-location" type="button" class="btn btn-outline-success">
@@ -53,10 +53,10 @@
                                 <li>
                                 <span id="current-time">Currently</span>
                                 </li>
-                                <li>Partly cloudy</li>
-                                <li>Percipitation: 1%</li>
-                                <li>Humidity: 57%</li>
-                                <li>Wind: 10 km/h</li>
+                                <li><span id="weather-main">Partly cloudy</span></li>
+                                <li>Percipitation: <span>1%</span></li>
+                                <li>Humidity: <span id="main-humidity">57</span>%</li>
+                                <li>Wind: <span id="wind-speed">10</span> km/h</li>
                             </ul>
                         </h2>
                     </div>
