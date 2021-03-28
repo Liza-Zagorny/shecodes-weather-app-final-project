@@ -5,13 +5,19 @@ li {
 footer {
   margin: 0 auto;
   text-align: center;
-  font-size: 15px;
+  font-size: 12px;
 }
 
-.card {
+.card-main {
   display: block;
   margin: 0 auto;
   margin-top: 50px;
+  font-family: "Open Sans", sans-serif;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #fddbc7 100%);
+}
+
+.card-forecast {
+  margin-top: 25px;
 }
 .current-temp {
   font-size: smaller;
@@ -23,10 +29,6 @@ footer {
 
 .current-weather-row {
   padding-top: 25px;
-}
-
-.search-row {
-  padding-right: 0;
 }
 
 .forcast-emoji {
