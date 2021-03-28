@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="card" style="max-width: 50rem;">
+        <div class="card" style="max-width: 40rem;" >
             <div class="card-body">
                 <div class="row search">
                     <div class="col-10 search ">
@@ -27,13 +27,40 @@
                                 autocomplete="off" />
                         </form>
                     </div>
-                    <div class="col-2 d-grid gap-3 d-md-flex ">
+                    <div class="col-2 d-grid gap-2 d-md-flex ">
                         <button type="button" class="btn btn-outline-dark">
                             <i class="fas fa-search search"></i>
                         </button>
                         <button id="current-location" type="button" class="btn btn-outline-success">
                             <i class="fas fa-map-marker-alt"></i>
                         </button>
+                    </div>
+                </div>
+                <div class="row current-weather-row">
+                    <div class="col-7">
+                        <h1>
+                            <ul>
+                                <li><span id="current-city">Herzliya, IL</span></li>
+                                <li class="current-temp">
+                                    <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="">
+                                    <span id="temp-value">13</span>°C |
+                                    <a id="farenheit-link" href="#"> °F</a>
+                                </li>
+                            </ul>
+                        </h1>
+                    </div>
+                    <div class="col-5">
+                        <h2>
+                            <ul class="current-location-description">
+                                <li>
+                                <span id="current-time">Currently</span>
+                                </li>
+                                <li>Partly cloudy</li>
+                                <li>Percipitation: 1%</li>
+                                <li>Humidity: 57%</li>
+                                <li>Wind: 10 km/h</li>
+                            </ul>
+                        </h2>
                     </div>
                 </div>
             </div>
