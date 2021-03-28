@@ -23,6 +23,7 @@ function displayCityNameAndTemp(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=${apiKey}`;
    function showTemp(response) {
     let displayedCity = document.querySelector("#current-city");
+    let displayedIcon = document.querySelector("#icon")
     let displayedTemp = document.querySelector("#temp-value");
     let dispayedDateAndTime = document.querySelector("#current-time");
     let dispayedDescription = document.querySelector("#weather-main");
@@ -38,6 +39,8 @@ function displayCityNameAndTemp(event) {
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
+    displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+    displayedIcon.setAttribute ("alt", outputDescription)
     displayedTemp.innerHTML = outputTemp;
     dispayedDateAndTime.innerHTML = outputDateAndTime;
     dispayedDescription.innerHTML = outputDescription;
@@ -68,6 +71,7 @@ function showPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
   function showGeolocationTemp(response) {
     let displayedCity = document.querySelector("#current-city");
+    let displayedIcon = document.querySelector("#icon")
     let displayedTemp = document.querySelector("#temp-value");
     let dispayedDateAndTime = document.querySelector("#current-time");
     let dispayedDescription = document.querySelector("#weather-main");
@@ -82,7 +86,10 @@ function showPosition(position) {
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
+
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
+    displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+    displayedIcon.setAttribute ("alt", outputDescription)
     displayedTemp.innerHTML = outputTemp;
     dispayedDateAndTime.innerHTML = outputDateAndTime;
     dispayedDescription.innerHTML = outputDescription;
@@ -97,10 +104,12 @@ selectLocationButton.addEventListener ("click",GetLocation);
 
 //Feachers to add:  
 //1.Alerts if cityInput value is empty or invalid (e.i. there is axios error)
-//2. Find where is percipitation data in openWeatherAPI and add it to diaplay
-//3. Change Current time dispayed by city requested.
-//4. Icons
+//2. Find where is percipitation data in openWeatherAPI and add it to disaplay
+//3. DONE - Change Current time dispayed by city requested.
+//4. DONE - Icons
 //5. Forecast
 //6. Units conversion
 //7. CSS conditional display (as temp and day-night function)
 //8.Fix geolocation - not showing the correct location? 
+//9.Fix time to view time at timezone.
+//10. Change icons to custome to be able to make gradient for background and see the icons.
