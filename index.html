@@ -17,7 +17,30 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="card" style="max-width: 50rem;">
+            <div class="card-body">
+                <div class="row search">
+                    <div class="col-10 search ">
+                        <form id="search-form">
+                            <input class="form-control" type="text" id="city-input" placeholder="Search another city"
+                                autocomplete="off" />
+                        </form>
+                    </div>
+                    <div class="col-2 d-grid gap-3 d-md-flex ">
+                        <button type="button" class="btn btn-outline-dark">
+                            <i class="fas fa-search search"></i>
+                        </button>
+                        <button id="current-location" type="button" class="btn btn-outline-success">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><a target=”_blank” href="https://github.com/Liza-Zagorny/shecodes-weather-app">Open-source code</a> by Liza
+        Zagorny</footer>
     <script src="src/index.js"></script>
 </body>
 </html>

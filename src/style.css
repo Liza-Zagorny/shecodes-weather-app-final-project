@@ -1,0 +1,11 @@
+footer {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 15px;
+}
+
+.card {
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+}
