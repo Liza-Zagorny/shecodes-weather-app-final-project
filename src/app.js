@@ -16,11 +16,6 @@ function formatDate (timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayCityNameAndTemp(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#city-input").value;
-  let apiKey = "ef675c90f7a08fdac95db8723fa07244";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=${apiKey}`;
    function showTemp(response) {
     let displayedCity = document.querySelector("#current-city");
     let displayedIcon = document.querySelector("#icon")
@@ -47,15 +42,27 @@ function displayCityNameAndTemp(event) {
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
   }
+
+  function search (cityInput) {
+  let apiKey = "ef675c90f7a08fdac95db8723fa07244";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=${apiKey}`;
   axios.get(apiUrl).then(showTemp);
+
+  }
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input").value;
+  search(cityInput)
 }
+
 let selectForm = document.querySelector("#search-form");
-selectForm.addEventListener("submit", displayCityNameAndTemp);
+selectForm.addEventListener("submit", handleSubmit);
 
 //Adjusting search engine: submitting with "#search-button"
 
 let selectSearchButton = document.querySelector("#search-button")
-selectSearchButton.addEventListener("click", displayCityNameAndTemp)
+selectSearchButton.addEventListener("click", handleSubmit)
 
 //Adding current-location button response and weather display. 
 
@@ -101,6 +108,8 @@ function showPosition(position) {
 let selectLocationButton = document.querySelector("#current-location")
 selectLocationButton.addEventListener ("click",GetLocation);
 
+//Searching for default city weather at page load
+search("New York")
 
 //Feachers to add:  
 //1.Alerts if cityInput value is empty or invalid (e.i. there is axios error)
