@@ -24,10 +24,12 @@ function formatDate (timestamp) {
     let dispayedDescription = document.querySelector("#weather-main");
     let dispayedHumidity = document.querySelector("#main-humidity");
     let dispayedWindSpeed = document.querySelector("#wind-speed");
+
+    celsiusTemp = response.data.main.temp
     
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
-    let outputTemp = Math.round(response.data.main.temp);
+    let outputTemp = Math.round(celsiusTemp);
     let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
@@ -84,10 +86,12 @@ function showPosition(position) {
     let dispayedDescription = document.querySelector("#weather-main");
     let dispayedHumidity = document.querySelector("#main-humidity");
     let dispayedWindSpeed = document.querySelector("#wind-speed");
+
+    celsiusTemp = response.data.main.temp
     
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
-    let outputTemp = Math.round(response.data.main.temp);
+    let outputTemp = Math.round(celsiusTemp);
     let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
@@ -108,17 +112,42 @@ function showPosition(position) {
 let selectLocationButton = document.querySelector("#current-location")
 selectLocationButton.addEventListener ("click",GetLocation);
 
+
+//Units conversion
+function turnFarenheit(event) {
+  event.preventDefault()
+  selectCelsiusLink.classList.remove("active");
+  selectFarenheitLink.classList.add("active");
+  let selectTemp = document.querySelector("#temp-value");
+  let farenheitTemp = Math.round((celsiusTemp*9)/5+32);
+  selectTemp.innerHTML = farenheitTemp
+}
+
+function turnCelsius (event) {
+  event.preventDefault()
+  selectCelsiusLink.classList.add("active");
+  selectFarenheitLink.classList.remove("active");
+  let selectTemp = document.querySelector("#temp-value");
+  selectTemp.innerHTML = Math.round(celsiusTemp)
+}
+
+let celsiusTemp = null 
+
+let selectFarenheitLink = document.querySelector("#farenheit-link");
+selectFarenheitLink.addEventListener("click", turnFarenheit);
+
+let selectCelsiusLink = document.querySelector("#celsius-link");
+selectCelsiusLink.addEventListener("click", turnCelsius);
+
 //Searching for default city weather at page load
 search("New York")
 
+
 //Feachers to add:  
 //1.Alerts if cityInput value is empty or invalid (e.i. there is axios error)
-//2. Find where is percipitation data in openWeatherAPI and add it to disaplay
-//3. DONE - Change Current time dispayed by city requested.
-//4. DONE - Icons
-//5. Forecast
-//6. Units conversion
-//7. CSS conditional display (as temp and day-night function)
-//8.Fix geolocation - not showing the correct location? 
-//9.Fix time to view time at timezone.
-//10. Change icons to custome to be able to make gradient for background and see the icons.
+//2. Optional - Find where is percipitation data in openWeatherAPI and add it to disaplay
+//3. Forecast
+//4. CSS conditional display (as temp and day-night function)
+//5.Fix geolocation - not showing the correct location? 
+//6.Fix time to view time at timezone.
+//7. Change icons to custome to be able to make gradient for background and see the icons.

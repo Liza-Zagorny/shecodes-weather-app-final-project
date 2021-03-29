@@ -36,3 +36,13 @@ footer {
 .forecast-temp {
   font-size: 14px;
 }
+
+a {
+  text-decoration: none;
+}
+
+.active,
+.active:hover {
+  color: black;
+  cursor: default;
+}
