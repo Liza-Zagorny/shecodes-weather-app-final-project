@@ -66,7 +66,11 @@ function formatDate (timestamp) {
   function search (cityInput) {
   let apiKey = "ef675c90f7a08fdac95db8723fa07244";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(showTemp).catch(
+    function (error) {
+      alert('Please enter a valid city name')
+      return Promise.reject(error)
+    })
 
   }
 
@@ -143,7 +147,11 @@ function showPosition(position) {
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
   }
-  axios.get(apiUrl).then(showGeolocationTemp);
+  axios.get(apiUrl).then(showGeolocationTemp).catch(
+    function (error) {
+      alert("Sorry, can't get weather for your location")
+      return Promise.reject(error)
+    });
 }
 let selectLocationButton = document.querySelector("#current-location")
 selectLocationButton.addEventListener ("click",GetLocation);
@@ -180,12 +188,8 @@ search("New York")
 
 
 //Feachers to add:  
-//1.Alerts if cityInput value is empty or invalid (e.i. there is axios error)
-//2. Optional - Find where is percipitation data in openWeatherAPI and add it to disaplay
 //3. Forecast
 //4. CSS conditional display (as temp and day-night function)
-
-
 //5.Fix geolocation - not showing the correct location? 
 //6.Fix time to view time at timezone.
 //7. Change icons to custome to be able to make gradient for background and see the icons.
