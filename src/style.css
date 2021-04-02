@@ -46,3 +46,29 @@ a {
   color: black;
   cursor: default;
 }
+
+.day-hot {
+  background-image: linear-gradient(135deg, #f5f7fa, #f4a582);
+}
+.day-warm {
+  background-image: linear-gradient(135deg, #f5f7fa, #fddbc7);
+}
+.day-cold {
+  background-image: linear-gradient(135deg, #f5f7fa, #d1e5f0);
+}
+.day-freezing {
+  background-image: linear-gradient(135deg, #f5f7fa, #92c5df);
+}
+
+.night-hot {
+  background-image: linear-gradient(135deg, #2c2c2c, #b2172b);
+}
+.night-warm {
+  background-image: linear-gradient(135deg, #2c2c2c, #d6604d);
+}
+.night-cold {
+  background-image: linear-gradient(135deg, #2c2c2c, #2166ac);
+}
+.night-freezing {
+  background-image: linear-gradient(135deg, #2c2c2c, #053061);
+}

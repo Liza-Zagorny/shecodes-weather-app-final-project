@@ -35,6 +35,24 @@ function formatDate (timestamp) {
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
+    let mainCard = document.querySelector("#main-card")
+    if (outputTemp >= 20) { mainCard.classList.add("day-hot");
+        mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-freezing"); }
+    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add("day-warm");
+   mainCard.classList.remove("day-hot");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-freezing");}
+    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add("day-cold");
+   mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-hot");
+       mainCard.classList.remove("day-freezing");}
+    if (outputTemp < -5) { mainCard.classList.add("day-freezing");
+   mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-hot");}
+
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
     displayedIcon.setAttribute ("alt", outputDescription)
@@ -97,6 +115,24 @@ function showPosition(position) {
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
 
+    let mainCard = document.querySelector("#main-card")
+    if (outputTemp >= 20) { mainCard.classList.add("day-hot");
+        mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-freezing"); }
+    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add("day-warm");
+   mainCard.classList.remove("day-hot");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-freezing");}
+    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add("day-cold");
+   mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-hot");
+       mainCard.classList.remove("day-freezing");}
+    if (outputTemp < -5) { mainCard.classList.add("day-freezing");
+   mainCard.classList.remove("day-warm");
+        mainCard.classList.remove("day-cold");
+       mainCard.classList.remove("day-hot");}
+
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
@@ -148,6 +184,8 @@ search("New York")
 //2. Optional - Find where is percipitation data in openWeatherAPI and add it to disaplay
 //3. Forecast
 //4. CSS conditional display (as temp and day-night function)
+
+
 //5.Fix geolocation - not showing the correct location? 
 //6.Fix time to view time at timezone.
 //7. Change icons to custome to be able to make gradient for background and see the icons.
