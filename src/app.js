@@ -1,6 +1,8 @@
 //Basic search engine with API-call: after entering city name and submitting (pressing enter after writing city name) 
 //".current-weather-row" data will display relevant info in metric unit only.
 
+let now = new Date();
+
 function formatDate (timestamp) {
   let date = new Date(timestamp);
   let days = ["Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -34,6 +36,8 @@ function formatDate (timestamp) {
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
+    let timeZoneTime = formatDate ((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
+
 
     let mainCard = document.querySelector("#main-card")
     if (outputTemp >= 20) { mainCard.classList.add("day-hot");
@@ -57,7 +61,7 @@ function formatDate (timestamp) {
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
     displayedIcon.setAttribute ("alt", outputDescription)
     displayedTemp.innerHTML = outputTemp;
-    dispayedDateAndTime.innerHTML = outputDateAndTime;
+    dispayedDateAndTime.innerHTML = timeZoneTime;
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
@@ -118,6 +122,7 @@ function showPosition(position) {
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
+    let timeZoneTime = formatDate ((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
 
     let mainCard = document.querySelector("#main-card")
     if (outputTemp >= 20) { mainCard.classList.add("day-hot");
@@ -142,7 +147,7 @@ function showPosition(position) {
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
     displayedIcon.setAttribute ("alt", outputDescription)
     displayedTemp.innerHTML = outputTemp;
-    dispayedDateAndTime.innerHTML = outputDateAndTime;
+    dispayedDateAndTime.innerHTML = timeZoneTime;
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
@@ -186,10 +191,8 @@ selectCelsiusLink.addEventListener("click", turnCelsius);
 //Searching for default city weather at page load
 search("New York")
 
-
 //Feachers to add:  
 //3. Forecast
 //4. CSS conditional display (as temp and day-night function)
 //5.Fix geolocation - not showing the correct location? 
-//6.Fix time to view time at timezone.
 //7. Change icons to custome to be able to make gradient for background and see the icons.
