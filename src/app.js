@@ -3,6 +3,19 @@
 
 let now = new Date();
 
+function dayOrNight (timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+
+  if (hours >=18 || hours<5) {
+    return(`night`) 
+  }
+
+   else {
+    return(`day`)
+  }
+}
+
 function formatDate (timestamp) {
   let date = new Date(timestamp);
   let days = ["Sunday", "Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -37,25 +50,25 @@ function formatDate (timestamp) {
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
     let timeZoneTime = formatDate ((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
-
+    let dayOrNightAtTimezone =dayOrNight((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
 
     let mainCard = document.querySelector("#main-card")
-    if (outputTemp >= 20) { mainCard.classList.add("day-hot");
-        mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-freezing"); }
-    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add("day-warm");
-   mainCard.classList.remove("day-hot");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-freezing");}
-    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add("day-cold");
-   mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-hot");
-       mainCard.classList.remove("day-freezing");}
-    if (outputTemp < -5) { mainCard.classList.add("day-freezing");
-   mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-hot");}
+    if (outputTemp >= 20 ) { mainCard.classList.add(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+       mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`); }
+    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`);}
+    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`);}
+    if (outputTemp < -5) { mainCard.classList.add(`${dayOrNightAtTimezone}-freezing`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);}
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
@@ -122,26 +135,26 @@ function showPosition(position) {
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
-    let timeZoneTime = formatDate ((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
+     let timeZoneTime = formatDate ((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
+    let dayOrNightAtTimezone =dayOrNight((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
 
     let mainCard = document.querySelector("#main-card")
-    if (outputTemp >= 20) { mainCard.classList.add("day-hot");
-        mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-freezing"); }
-    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add("day-warm");
-   mainCard.classList.remove("day-hot");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-freezing");}
-    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add("day-cold");
-   mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-hot");
-       mainCard.classList.remove("day-freezing");}
-    if (outputTemp < -5) { mainCard.classList.add("day-freezing");
-   mainCard.classList.remove("day-warm");
-        mainCard.classList.remove("day-cold");
-       mainCard.classList.remove("day-hot");}
-
+    if (outputTemp >= 20 ) { mainCard.classList.add(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`); }
+    if (outputTemp >= 10  && outputTemp < 20) {mainCard.classList.add(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`);}
+    if (outputTemp >= -5  && outputTemp < 10) {mainCard.classList.add(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-freezing`);}
+    if (outputTemp < -5) { mainCard.classList.add(`${dayOrNightAtTimezone}-freezing`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);}
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)

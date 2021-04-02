@@ -43,7 +43,7 @@ a {
 
 .active,
 .active:hover {
-  color: black;
+  color: #212529;
   cursor: default;
 }
 
@@ -61,14 +61,14 @@ a {
 }
 
 .night-hot {
-  background-image: linear-gradient(135deg, #2c2c2c, #b2172b);
+  background-image: linear-gradient(135deg, #b2172b, #2c2c2c);
 }
 .night-warm {
-  background-image: linear-gradient(135deg, #2c2c2c, #d6604d);
+  background-image: linear-gradient(135deg, #d6604d, #2c2c2c);
 }
 .night-cold {
-  background-image: linear-gradient(135deg, #2c2c2c, #2166ac);
+  background-image: linear-gradient(135deg, #2166ac, #2c2c2c);
 }
 .night-freezing {
-  background-image: linear-gradient(135deg, #2c2c2c, #053061);
+  background-image: linear-gradient(135deg, #053061, #2c2c2c);
 }
