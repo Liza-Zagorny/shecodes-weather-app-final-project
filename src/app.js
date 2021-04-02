@@ -204,8 +204,13 @@ selectCelsiusLink.addEventListener("click", turnCelsius);
 //Searching for default city weather at page load
 search("New York")
 
-//Feachers to add:  
-//3. Forecast
-//4. CSS conditional display (as temp and day-night function)
-//5.Fix geolocation - not showing the correct location? 
-//7. Change icons to custome to be able to make gradient for background and see the icons.
+ 
+//To do:
+//1.Change forecast tamplate to appear from JS
+//2. Add forecast API and implement it
+//3. Adjust unit conversion for the forecast section
+//4. Finish styling to look better
+
+//Consider to fix: 
+//🤔 Fix geolocation - not showing the correct location? 
+//🤔 Change icons to custome to look nicer with gradient background.
