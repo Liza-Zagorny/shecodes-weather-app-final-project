@@ -31,6 +31,12 @@ function formatDate (timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+  function getForecast(coordinates) {
+    let apiKey = "ef675c90f7a08fdac95db8723fa07244";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
+    axios.get(apiUrl).then(displayForecast)
+  }
+
    function showTemp(response) {
     let displayedCity = document.querySelector("#current-city");
     let displayedIcon = document.querySelector("#icon")
@@ -78,6 +84,8 @@ function formatDate (timestamp) {
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
+
+    getForecast(response.data.coord)
   }
 
   function search (cityInput) {
@@ -208,7 +216,12 @@ search("New York")
 
 //Forecast tamplate appearing from JS
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily)
+//forecast-icon should get data from response.data.daily[dayIndex].weather[0].icon
+//forecast-max-temp should get data from response.data.daily[dayIndex].temp.max
+//forecast-min-temp should get data from response.data.daily[dayIndex].temp.min
+//These two should be displayed Math.round()
   let forecastCard = document.querySelector("#forecast-body")
   let forecastHTML = `<div class="row forecast-row">                      
   `;
@@ -222,7 +235,7 @@ function displayForecast() {
   forecastCard.innerHTML = forecastHTML 
 }
 
-displayForecast()
+
 
 //To do:
 //2. Add forecast API and implement it
