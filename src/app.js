@@ -205,8 +205,26 @@ selectCelsiusLink.addEventListener("click", turnCelsius);
 search("New York")
 
  
+
+//Forecast tamplate appearing from JS
+
+function displayForecast() {
+  let forecastCard = document.querySelector("#forecast-body")
+  let forecastHTML = `<div class="row forecast-row">                      
+  `;
+  let days = ["Sun", "Mon","Tue", "Wed", "Thu"]
+  days.forEach(function(day){forecastHTML = forecastHTML + `<div class="col-2 forecast-col">
+                                <span id="forecast-day">${day}</span>
+                                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" id="forecast-icon" width="70">
+                                <span class="forecast-temp"><strong><span id="forecast-max-temp">14</span>°</strong> | <span id="forecast-min-temp">11</span>°</span>
+                            </div>`}) 
+  forecastHTML = forecastHTML + `</div>`
+  forecastCard.innerHTML = forecastHTML 
+}
+
+displayForecast()
+
 //To do:
-//1.Change forecast tamplate to appear from JS
 //2. Add forecast API and implement it
 //3. Adjust unit conversion for the forecast section
 //4. Finish styling to look better

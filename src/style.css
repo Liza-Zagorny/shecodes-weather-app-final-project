@@ -29,12 +29,24 @@ footer {
 .current-weather-row {
   padding-top: 25px;
 }
-
-.forcast-emoji {
-  font-size: 50px;
+.forecast-card {
+  background: rgba(255, 255, 255, 40%);
 }
+
+.forecast-row {
+  text-align: center;
+}
+
+.forecast-col {
+  margin-left: 15px;
+}
+
+.forecast-day {
+  font-size: 20px;
+}
+
 .forecast-temp {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 a {
