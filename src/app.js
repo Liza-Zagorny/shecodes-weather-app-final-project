@@ -31,6 +31,15 @@ function formatDate (timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+//This formating is to display names of days from  response.data.daily.dt for the forecast section 
+function formatDay (timestamp) {
+ let date = new Date(timestamp * 1000);
+ let day = date.getDay();
+ let days = ["Sun", "Mon","Tue", "Wed", "Thu", "Fri", "Sat"];
+ return days[day];
+
+}
+
   function getForecast(coordinates) {
     let apiKey = "ef675c90f7a08fdac95db8723fa07244";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
@@ -217,20 +226,21 @@ search("New York")
 //Forecast tamplate appearing from JS
 
 function displayForecast(response) {
-  console.log(response.data.daily)
-//forecast-icon should get data from response.data.daily[dayIndex].weather[0].icon
-//forecast-max-temp should get data from response.data.daily[dayIndex].temp.max
-//forecast-min-temp should get data from response.data.daily[dayIndex].temp.min
-//These two should be displayed Math.round()
+console.log( response.data.daily)
+  let forecastDailyData = response.data.daily
   let forecastCard = document.querySelector("#forecast-body")
   let forecastHTML = `<div class="row forecast-row">                      
   `;
-  let days = ["Sun", "Mon","Tue", "Wed", "Thu"]
-  days.forEach(function(day){forecastHTML = forecastHTML + `<div class="col-2 forecast-col">
-                                <span id="forecast-day">${day}</span>
-                                <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="" id="forecast-icon" width="70">
-                                <span class="forecast-temp"><strong><span id="forecast-max-temp">14</span>°</strong> | <span id="forecast-min-temp">11</span>°</span>
-                            </div>`}) 
+  
+  forecastDailyData.forEach(function(forecastDay, index) {
+  if (index < 5) {
+     {forecastHTML = forecastHTML + `<div class="col-2 forecast-col">
+                                <span id="forecast-day">${formatDay(forecastDay.dt)}</span>
+                                <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" id="forecast-icon" width="70">
+                                <span class="forecast-temp"><strong><span id="forecast-max-temp">${Math.round(forecastDay.temp.max)}</span>°</strong> | <span id="forecast-min-temp">${Math.round(forecastDay.temp.min)}</span>°</span>
+                            </div>`}
+  }}
+ ) 
   forecastHTML = forecastHTML + `</div>`
   forecastCard.innerHTML = forecastHTML 
 }
@@ -238,7 +248,6 @@ function displayForecast(response) {
 
 
 //To do:
-//2. Add forecast API and implement it
 //3. Adjust unit conversion for the forecast section
 //4. Finish styling to look better
 
