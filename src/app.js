@@ -8,6 +8,7 @@ function dayOrNight (timestamp) {
   let hours = date.getHours();
 
   if (hours >=18 || hours<5) {
+    // 18:00 is a condition because it looks like "sunset" data is not working at the resplonse (displays the next day and not sunset time)
     return(`night`) 
   }
 
@@ -68,6 +69,7 @@ function formatDay (timestamp) {
     let dayOrNightAtTimezone =dayOrNight((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
 
     let mainCard = document.querySelector("#main-card")
+    let currentLocationDescription = document.querySelector("#current-location-description")
     if (outputTemp >= 20 ) { mainCard.classList.add(`${dayOrNightAtTimezone}-hot`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
@@ -84,6 +86,10 @@ function formatDay (timestamp) {
         mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);}
+
+   
+       currentLocationDescription.classList.add(`${dayOrNightAtTimezone}-description`)
+    
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)

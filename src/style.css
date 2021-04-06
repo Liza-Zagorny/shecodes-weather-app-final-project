@@ -26,6 +26,13 @@ footer {
   text-align: left;
 }
 
+.day-description {
+  color: #212529;
+}
+.night-description {
+  color: #cfd0d1;
+}
+
 .current-weather-row {
   padding-top: 25px;
 }
