@@ -61,7 +61,6 @@ function formatDay (timestamp) {
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
     let outputTemp = Math.round(celsiusTemp);
-    let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
@@ -69,7 +68,7 @@ function formatDay (timestamp) {
     let dayOrNightAtTimezone =dayOrNight((response.data.dt+(now.getTimezoneOffset()*60)+response.data.timezone)* 1000)
 
     let mainCard = document.querySelector("#main-card")
-    let currentLocationDescription = document.querySelector("#current-location-description")
+    
     if (outputTemp >= 20 ) { mainCard.classList.add(`${dayOrNightAtTimezone}-hot`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
@@ -87,7 +86,7 @@ function formatDay (timestamp) {
         mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);}
 
-   
+        let currentLocationDescription = document.querySelector("#current-location-description")
        currentLocationDescription.classList.add(`${dayOrNightAtTimezone}-description`)
     
 
@@ -154,7 +153,6 @@ function showPosition(position) {
     let outputCityName = response.data.name;
     let outputCountry = response.data.sys.country
     let outputTemp = Math.round(celsiusTemp);
-    let outputDateAndTime = formatDate(response.data.dt * 1000)
     let outputDescription = (response.data.weather[0].main);
     let outputHumidity = response.data.main.humidity;
     let outputWindSpeed = Math.round(response.data.wind.speed);
@@ -177,7 +175,10 @@ function showPosition(position) {
     if (outputTemp < -5) { mainCard.classList.add(`${dayOrNightAtTimezone}-freezing`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-warm`);
         mainCard.classList.remove(`${dayOrNightAtTimezone}-cold`);
-        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);}
+        mainCard.classList.remove(`${dayOrNightAtTimezone}-hot`);};
+
+        let currentLocationDescription = document.querySelector("#current-location-description")
+       currentLocationDescription.classList.add(`${dayOrNightAtTimezone}-description`)
 
     displayedCity.innerHTML = `${outputCityName}, ${outputCountry}`;
     displayedIcon.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
@@ -215,6 +216,8 @@ function turnCelsius (event) {
   let selectTemp = document.querySelector("#temp-value");
   selectTemp.innerHTML = Math.round(celsiusTemp)
 }
+
+
 
 let celsiusTemp = null 
 
