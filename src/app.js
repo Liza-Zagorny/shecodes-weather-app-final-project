@@ -235,7 +235,7 @@ search("New York")
 //Forecast tamplate appearing from JS
 
 function displayForecast(response) {
-console.log( response.data.daily)
+
   let forecastDailyData = response.data.daily
   let forecastCard = document.querySelector("#forecast-body")
   let forecastHTML = `<div class="row forecast-row">                      
