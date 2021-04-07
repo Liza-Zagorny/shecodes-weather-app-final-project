@@ -188,12 +188,16 @@ function showPosition(position) {
     dispayedDescription.innerHTML = outputDescription;
     dispayedHumidity.innerHTML = outputHumidity;
     dispayedWindSpeed.innerHTML = outputWindSpeed;
+
+    getForecast(response.data.coord)
   }
   axios.get(apiUrl).then(showGeolocationTemp).catch(
     function (error) {
       alert("Sorry, can't get weather for your location")
       return Promise.reject(error)
     });
+
+    
 }
 let selectLocationButton = document.querySelector("#current-location")
 selectLocationButton.addEventListener ("click",GetLocation);
@@ -214,7 +218,7 @@ function turnCelsius (event) {
   selectCelsiusLink.classList.add("active");
   selectFarenheitLink.classList.remove("active");
   let selectTemp = document.querySelector("#temp-value");
-  selectTemp.innerHTML = Math.round(celsiusTemp)
+  selectTemp.innerHTML = Math.round(celsiusTemp) 
 }
 
 
@@ -222,16 +226,15 @@ function turnCelsius (event) {
 let celsiusTemp = null 
 
 let selectFarenheitLink = document.querySelector("#farenheit-link");
-selectFarenheitLink.addEventListener("click", turnFarenheit);
+//selectFarenheitLink.addEventListener("click",turnFarenheit);
 
 let selectCelsiusLink = document.querySelector("#celsius-link");
-selectCelsiusLink.addEventListener("click", turnCelsius);
+//selectCelsiusLink.addEventListener("click", turnCelsius);
 
 //Searching for default city weather at page load
 search("New York")
 
  
-
 //Forecast tamplate appearing from JS
 
 function displayForecast(response) {
@@ -240,8 +243,9 @@ function displayForecast(response) {
   let forecastCard = document.querySelector("#forecast-body")
   let forecastHTML = `<div class="row forecast-row">                      
   `;
-  
-  forecastDailyData.forEach(function(forecastDay, index) {
+
+  debugger
+    forecastDailyData.forEach(function(forecastDay, index) {
   if (index < 5) {
      {forecastHTML = forecastHTML + `<div class="col-2 forecast-col">
                                 <span id="forecast-day">${formatDay(forecastDay.dt)}</span>
@@ -249,17 +253,12 @@ function displayForecast(response) {
                                 <span class="forecast-temp"><strong><span id="forecast-max-temp">${Math.round(forecastDay.temp.max)}</span>°</strong> | <span id="forecast-min-temp">${Math.round(forecastDay.temp.min)}</span>°</span>
                             </div>`}
   }}
- ) 
+ )
+  
+   
   forecastHTML = forecastHTML + `</div>`
   forecastCard.innerHTML = forecastHTML 
 }
 
 
 
-//To do:
-//3. Adjust unit conversion for the forecast section
-//4. Finish styling to look better
-
-//Consider to fix: 
-//🤔 Fix geolocation - not showing the correct location? 
-//🤔 Change icons to custome to look nicer with gradient background.
